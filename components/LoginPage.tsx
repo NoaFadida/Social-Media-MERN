@@ -9,7 +9,7 @@ import {
   TextInput,
   Alert,
   ScrollView,
-} from "react-native";
+} from "react-native"
 import AuthModel, { User } from "../model/AuthModel";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -28,21 +28,31 @@ const LoginPage: FC<{ navigation: any }> = ({ navigation }) => {
   }, [navigation]);
 
   const pressHandlerLogin = async () => {
-    const user: User = {
-      email: username,
-      password: password,
-    };
-    const data = (await AuthModel.login(user)) || {};
-    if (!data) {
-      console.log("login failed:");
-      Alert.alert("Try Again");
+    if (username === "" || password === "") {
+      console.log("login failed");
+      Alert.alert(" Login Failed ", "please try again");
       return;
     }
-    console.log("login successful:");
-    await AsyncStorage.setItem("accessToken", data?.[0]);
-    await AsyncStorage.setItem("id", data?.[1]);
-    await AsyncStorage.setItem("refreshToken", data?.[2]);
-    navigation.replace("UserDetailsPage");
+    try {
+      const user: User = {
+        email: username,
+        password: password,
+      };
+
+      const data = (await AuthModel.login(user)) || {};
+      if (!data) {
+        console.log("login failed");
+        Alert.alert(" Login Failed ", "please try again");
+        return;
+      }
+      console.log("login successful");
+      await AsyncStorage.setItem("accessToken", data?.[0]);
+      await AsyncStorage.setItem("id", data?.[1]);
+      await AsyncStorage.setItem("refreshToken", data?.[2]);
+      navigation.replace("UserDetailsPage");
+    } catch (error) {
+      console.log("login failed");
+    }
   };
 
   const pressHandlerSignUp = () => {
@@ -50,8 +60,8 @@ const LoginPage: FC<{ navigation: any }> = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <View style={styles.content}>
         <TextInput
           style={styles.input}
           onChangeText={onText1Change}
@@ -67,14 +77,16 @@ const LoginPage: FC<{ navigation: any }> = ({ navigation }) => {
         />
 
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={styles.button} onPress={pressHandlerLogin}>
-            <AntDesign name="login" size={24} color="black" />
+          <TouchableOpacity  style={styles.buttonText} onPress={pressHandlerLogin}>
+            <AntDesign name="login" size={30} color="#161a1d" />
+            <Text>LogIn</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={styles.button} onPress={pressHandlerSignUp}>
-            <FontAwesome name="user-plus" size={24} color="black" />
+          <TouchableOpacity style={styles.buttonText} onPress={pressHandlerSignUp}>
+            <FontAwesome name="user-plus" size={30} color="#161a1d" />
+            <Text>SignUp</Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -89,39 +101,39 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  userPictureStyle: {
-    marginTop: 10,
-    height: 200,
-    resizeMode: "contain",
-    alignSelf: "center",
-    marginBottom: 20,
+  content: {
+    marginVertical:150
   },
   input: {
-    height: 40,
-    margin: 12,
+    height: 45,
+    marginHorizontal: 20,
     borderWidth: 1,
     padding: 10,
     borderRadius: 10,
     marginTop: 20,
+    borderColor: "#d3d3d3",
+    backgroundColor:"#f8f9fa"
   },
   buttonsContainer: {
     flexDirection: "row",
-    alignSelf: "baseline",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 10,
   },
   button: {
-    flex: 1,
-    margin: 10,
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10,
+    backgroundColor: "#161a1d",
+    padding: 3,
     borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonText: {
-    fontSize: 16,
+    padding: 10,
+    color:"white"
   },
   text: {
     alignSelf: "center",
-    marginTop: 15,
   },
 });
+
 export default LoginPage;

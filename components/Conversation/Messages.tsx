@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from "react"
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { MESSAGE } from "./Conversation";
 import Message from "./Message";

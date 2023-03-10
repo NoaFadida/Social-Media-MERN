@@ -23,7 +23,7 @@ const EditPost: FC<{ route: any; navigation: any }> = ({
     sender: route.params.sender,
   };
 
-  const [msg, setMsg] = useState<string>("");
+  const [msg, setMsg] = useState<string>("")
   const [isEditingMsg, setIsEditingMsg] = useState(false);
 
   const [tempMsg, setTempMsg] = useState(msg);

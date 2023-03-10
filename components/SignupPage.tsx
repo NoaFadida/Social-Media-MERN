@@ -9,8 +9,9 @@ import {
   TextInput,
   ScrollView,
   Alert,
-} from "react-native";
+} from "react-native"
 import AuthModel, { User } from "../model/AuthModel";
+import UserModel from "../model/UserModel";
 import * as ImagePicker from "expo-image-picker";
 
 const SignupPage: FC<{ navigation: any }> = ({ navigation }) => {
@@ -46,15 +47,31 @@ const SignupPage: FC<{ navigation: any }> = ({ navigation }) => {
   };
 
   const pressHandlerSignUp = async () => {
-    alert("Hi " + name + " Please log in");
-    const user: User = {
-      email: username,
-      name: name,
-      password: password,
-      avatarUrl: avatarUri,
-    };
     try {
-      await AuthModel.register(user);
+      // alert("Hi " + name + " Please log in");
+      if (
+        username === "" ||
+        password === "" ||
+        avatarUri === "" ||
+        name === ""
+      ) {
+        console.log("login failed");
+        Alert.alert("Please fill all the fileds", "try again");
+        return;
+      }
+      const url = await UserModel.uploadImage(avatarUri);
+      const user: User = {
+        email: username,
+        name: name,
+        password: password,
+        avatarUrl: url,
+      };
+      console.log(user);
+      const res = await AuthModel.register(user);
+      if (res?.status == 400) {
+        Alert.alert("User already exists", "Login or try again");
+        return;
+      }
       console.log("success signup signuppage");
     } catch (err) {
       console.log("fail signup" + err);
@@ -123,6 +140,7 @@ const SignupPage: FC<{ navigation: any }> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    
   },
   userPictureStyle: {
     marginTop: 10,
@@ -132,58 +150,64 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   choosePhotoText: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "#999",
+    color: "#161a1d",
     textAlign: "center",
   },
   takePhotoText: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "#007aff",
+    color: "#161a1d",
     marginBottom: 20,
     resizeMode: "contain",
     alignSelf: "center",
   },
   imageContainer: {
-    backgroundColor: "#f0f0f0",
-    width: 100,
-    height: 100,
+    backgroundColor: "#f8f9fa",
+    width: 150,
+    height: 150,
     alignItems: "center",
     justifyContent: "center",
     resizeMode: "contain",
     alignSelf: "center",
-    marginBottom: 20,
+    margin: 20,
+    borderRadius: 100,
   },
   image: {
     width: "100%",
     height: "100%",
+    borderRadius: 100,
   },
   input: {
     height: 40,
-    margin: 12,
+    marginHorizontal: 15,
     borderWidth: 1,
     padding: 10,
     borderRadius: 10,
-    marginTop: 20,
+    marginTop: 15,
+    borderColor: "#d3d3d3",
+    backgroundColor:"#f8f9fa"
   },
   inputError: {
     borderColor: "red",
   },
   buttonsContainer: {
     flexDirection: "row",
-    alignSelf: "baseline",
+    alignItems: "center",
+    justifyContent: "center",
   },
   button: {
-    flex: 1,
-    margin: 10,
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 5,
+    margin: 20,
+    backgroundColor: "#161a1d",
+    padding: 3,
     borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonText: {
     padding: 10,
+    color:"white"
   },
 });
 

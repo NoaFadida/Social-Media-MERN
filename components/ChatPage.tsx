@@ -92,7 +92,7 @@ const ChatPage: FC<{ navigation: any }> = ({ navigation }) => {
       setUsers(usersFiltered);
     });
     return unsubscribe;
-  });
+  })
 
   return (
     // <>

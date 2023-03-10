@@ -83,7 +83,7 @@ const AllPostsPage: FC<{
     const unsubscribe = navigation.addListener("focus", async () => {
       let posts: Post[] = [];
       try {
-        posts = await UserModel.getAllPosts();
+        posts = await UserModel.getAllPosts()
       } catch (err) {
         console.log("fail fetching posts");
       }

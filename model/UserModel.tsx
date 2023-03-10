@@ -53,7 +53,7 @@ const getUserById = async (id: string) => {
     const res: any = await UserApi.getUserById(id);
     return [res.data?.name, res.data?.avatarUrl];
   } catch (err) {
-    console.log("fail getting user from db by ID ");
+    console.log("fail getting user from db by ID ")
   }
 };
 

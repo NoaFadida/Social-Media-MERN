@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from "react"
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { MESSAGE } from "./Conversation";
 
@@ -28,7 +28,7 @@ const Message: FC<{ message: MESSAGE; userId: string }> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 20,
+    margin: 15,
   },
   subContainer: {
     padding: 20,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     width: 300,
   },
   senderBackground: {
-    backgroundColor: "green",
+    backgroundColor: "#d3f8e2",
   },
   recieverBackground: {
     backgroundColor: "white",

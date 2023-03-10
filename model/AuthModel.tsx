@@ -1,5 +1,5 @@
 import AuthApi from "../api/AuthApi";
-import apiClient from "../api/ClientApi";
+import apiClient from "../api/ClientApi"
 
 export type User = {
   email: String;
@@ -27,9 +27,13 @@ const register = async (user: User) => {
   };
   try {
     const res = await AuthApi.register(data);
-    console.log("success signup authmodel");
+    if (res.status == 400) {
+      return res;
+    } else if (res.status == 200) {
+      return res
+    }
   } catch (err) {
-    console.log("register failed: ");
+    console.log("register failed");
   }
 };
 

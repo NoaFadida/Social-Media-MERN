@@ -1,4 +1,4 @@
-import ChatApi from "../api/ChatApi";
+import ChatApi from "../api/ChatApi"
 
 export type Conversation = {
   members: [String];

@@ -1,6 +1,8 @@
-import apiClient from "./ClientApi";
+import apiClient from "./ClientApi"
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const register = async (userJson: any) => {
+
+  
   return apiClient.post("auth/register", userJson);
 };
 

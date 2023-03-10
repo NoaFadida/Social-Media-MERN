@@ -1,17 +1,17 @@
-import apiClient from "./ClientApi";
+import apiClient from "./ClientApi"
 
 const getConversation = async (senderId: string, receiverId: string) => {
   return apiClient.get(
-    "chatRouter/conversation/" + senderId + "/" + receiverId
+    "chat/conversation/" + senderId + "/" + receiverId
   );
 };
 
 const addNewMsg = async (message: any) => {
-  return apiClient.post("chatRouter/message/", message);
+  return apiClient.post("chat/message/", message);
 };
 
 const getConversationrMessages = async (conversationId: string) => {
-  return apiClient.get("chatRouter/message/" + conversationId);
+  return apiClient.get("chat/message/" + conversationId);
 };
 
 export default {

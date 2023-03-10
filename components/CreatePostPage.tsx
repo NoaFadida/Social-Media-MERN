@@ -53,7 +53,7 @@ const CreatePostPage: FC<{ navigation: any }> = ({ navigation }) => {
         setAvatrUri(uri);
       }
     } catch (err) {
-      console.log("open camera error");
+      console.log("open camera error")
     }
   };
 

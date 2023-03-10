@@ -8,7 +8,7 @@ import {
   TextInput,
   Alert,
 } from "react-native";
-import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
+import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons"
 import AuthModel, { Token } from "../model/AuthModel";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CommonActions, NavigationContainer } from "@react-navigation/native";
@@ -106,10 +106,11 @@ const UserDetailsPage: FC<{ route: any; navigation: any }> = ({
   const handleEditPicture = async () => {
     await handleTakePhoto();
     const id_ = await AsyncStorage.getItem("id");
+    const url = await UserModel.uploadImage(UriAfretChange);
     const up: UserUpdate = {
       id: String(id_),
       name: fullName,
-      avatarUrl: UriAfretChange,
+      avatarUrl: url,
     };
     try {
       const res = await UserModel.upadteUser(up);
@@ -243,7 +244,9 @@ const UserDetailsPage: FC<{ route: any; navigation: any }> = ({
             } else if (route.name === "MyPosts") {
               iconName = focused ? "md-grid" : "md-grid-outline";
             } else if (route.name === "Chat") {
-              iconName = focused ? "md-chatbubble-ellipses": "md-chatbubble-ellipses-outline";
+              iconName = focused
+                ? "md-chatbubble-ellipses"
+                : "md-chatbubble-ellipses-outline";
             }
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;

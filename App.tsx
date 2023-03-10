@@ -7,7 +7,7 @@ import EditPost from "./components/EditPost";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import Conversation from "./components/Conversation/Conversation";
+import Conversation from "./components/Conversation/Conversation"
 
 const Stack = createNativeStackNavigator();
 

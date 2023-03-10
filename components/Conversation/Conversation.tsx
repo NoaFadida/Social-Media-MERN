@@ -1,3 +1,4 @@
+import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import { FC, useState, useEffect, useRef } from "react";
@@ -12,6 +13,7 @@ import {
   TouchableHighlight,
   TextInput,
   Button,
+  TouchableOpacity,
 } from "react-native";
 import ChatApi from "../../api/ChatApi";
 import ConversationModel from "../../model/ConversationModel";
@@ -62,7 +64,7 @@ const Conversation: FC<{ route?: any; navigation: any }> = ({
             const fetchMsg: any = await ChatApi.getConversationrMessages(
               conversation
             );
-            setMessages(fetchMsg.data);
+            setMessages(fetchMsg.data)
           }
         }
       } catch (err) {
@@ -70,7 +72,7 @@ const Conversation: FC<{ route?: any; navigation: any }> = ({
       }
     };
     getConversationFunc();
-  }, []);
+  }, [description]);
 
   //   useEffect(() => {
   //     const fetchConversationMsg = async () => {
@@ -94,6 +96,8 @@ const Conversation: FC<{ route?: any; navigation: any }> = ({
     };
     try {
       await ChatApi.addNewMsg(message);
+      console.log(message);
+      setDescription("")
     } catch (err) {
       console.log("fail adding message ");
     }
@@ -113,7 +117,10 @@ const Conversation: FC<{ route?: any; navigation: any }> = ({
           onChangeText={setDescription}
         ></TextInput>
         <View style={styles.send}>
-          <Button title="Send" onPress={addNewMsg} />
+          <TouchableOpacity onPress={addNewMsg}>
+            <AntDesign name="rightcircle" size={32} color="#74c69d" />
+          </TouchableOpacity>
+          {/* <Button title="Send" onPress={addNewMsg} /> */}
         </View>
       </View>
     </View>
@@ -135,14 +142,17 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   Textarea: {
-    flex: 8,
+    flex: 10,
     height: 100,
     borderRadius: 20,
-    backgroundColor: "pink",
+    backgroundColor: "white",
     padding: 10,
+    borderWidth: 1,
+    borderColor: "#d3d3d3",
   },
   send: {
-    flex: 2,
+    flex: 1,
+    padding:10,
   },
 });
 
