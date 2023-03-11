@@ -68,7 +68,6 @@ const SignupPage: FC<{ navigation: any }> = ({ navigation }) => {
 
   const pressHandlerSignUp = async () => {
     try {
-      // alert("Hi " + name + " Please log in");
       if (
         username === "" ||
         password === "" ||
