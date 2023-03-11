@@ -1,0 +1,124 @@
+###
+
+//register user 1
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "email": "noa12356@gmail.com",
+    "password": "12345"
+}
+
+###
+
+//login user 1
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "noa@gmail.com",
+    "password": "12345"
+}
+
+###
+
+###
+
+//register user 2
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "email": "user2@gmail.com",
+    "password": "12345"
+}
+
+###
+
+//login user 1
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "user2@gmail.com",
+    "password": "12345"
+}
+
+###
+
+// add new post
+POST http://localhost:3000/post
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmM3Y2RlNzNjMjI4N2RjMDA3ZmJlNyIsImlhdCI6MTY3NzQ5MTQyOCwiZXhwIjoxNjc3NDk1MDI4fQ.eEH_rjZv_XGokNgef4DS1f9gH-mn0uBImLg04U7VtvA
+Content-Type: application/json
+
+{
+    "message": "This is my new post",
+    "sender" : "Noa"
+}
+
+###
+
+//get all posts
+GET http://localhost:3000/post
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmM3Y2RlNzNjMjI4N2RjMDA3ZmJlNyIsImlhdCI6MTY3NzQ5MTQyOCwiZXhwIjoxNjc3NDk1MDI4fQ.eEH_rjZv_XGokNgef4DS1f9gH-mn0uBImLg04U7VtvA
+
+###
+
+
+// get posts by sender
+GET http://localhost:3000/post?sender=Noa
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmM3Y2RlNzNjMjI4N2RjMDA3ZmJlNyIsImlhdCI6MTY3NzQ5MTQyOCwiZXhwIjoxNjc3NDk1MDI4fQ.eEH_rjZv_XGokNgef4DS1f9gH-mn0uBImLg04U7VtvA
+
+###
+
+//get post by id
+GET http://localhost:3000/post/63fc7d0473c2287dc007fbec
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmM3Y2RlNzNjMjI4N2RjMDA3ZmJlNyIsImlhdCI6MTY3NzQ5MTQyOCwiZXhwIjoxNjc3NDk1MDI4fQ.eEH_rjZv_XGokNgef4DS1f9gH-mn0uBImLg04U7VtvA
+
+###
+
+
+//update post
+PUT http://localhost:3000/post/63fc7d0473c2287dc007fbec
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmM3Y2RlNzNjMjI4N2RjMDA3ZmJlNyIsImlhdCI6MTY3NzQ5MTQyOCwiZXhwIjoxNjc3NDk1MDI4fQ.eEH_rjZv_XGokNgef4DS1f9gH-mn0uBImLg04U7VtvA
+Content-Type: application/json
+
+{
+    "message": "This is my new post after update"
+}
+
+###
+
+
+// send new message from user 1 to user 2
+POST http://localhost:3000/message 
+Content-Type: application/json
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmM3Y2RlNzNjMjI4N2RjMDA3ZmJlNyIsImlhdCI6MTY3NzQ5MTQyOCwiZXhwIjoxNjc3NDk1MDI4fQ.eEH_rjZv_XGokNgef4DS1f9gH-mn0uBImLg04U7VtvA
+
+{
+    "receiverId":"63b7d7723df5a7a2b3136a18",
+    "text":"Hello my name is noa"
+}
+
+###
+
+// send new message from user 2 to user 1
+POST http://localhost:3000/message 
+Content-Type: application/json
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjdkNzcyM2RmNWE3YTJiMzEzNmExOCIsImlhdCI6MTY3Mjk5Mjc2OSwiZXhwIjoxNjcyOTk2MzY5fQ.eh_eS5ByFTQicfG-xY-FEuMg7VjlW3TS_yfiQwvhqnM
+
+{
+    "receiverId":"63b7d5d33df5a7a2b3136a00",
+    "text":"Hello noa my name is user2"
+}
+
+###
+
+//get messages by user according to conversatuon id
+GET http://localhost:3000/message?user=63b7d7723df5a7a2b3136a18
+Content-Type: application/json
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjdkNWQzM2RmNWE3YTJiMzEzNmEwMCIsImlhdCI6MTY3Mjk5MjI4MCwiZXhwIjoxNjcyOTk1ODgwfQ.ZEVWT1L907lK0sqI9NyjB1xFVkaiOSZyIFKmv3ct7P8
+
+###
+
+post http://localhost:3000/student
