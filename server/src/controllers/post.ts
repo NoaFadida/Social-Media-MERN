@@ -47,6 +47,7 @@ const addNewPost = async (req: Request, res: Response) => {
     avatarUrl: result,
   });
   try {
+    console.log('post',post)
     const newPost = await post.save();
     console.log("post saved in DB");
     res.status(200).send(newPost);

@@ -13,25 +13,28 @@ import {
 import * as ImagePicker from "expo-image-picker";
 import UserModel, { Post } from "../model/UserModel";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Ionicons from "@expo/vector-icons/Ionicons"
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const CreatePostPage: FC<{ navigation: any }> = ({ navigation }) => {
   const [description, setDescription] = useState("");
   const [avatarUri, setAvatrUri] = useState("");
+  const [status, requestPermission] = ImagePicker.useCameraPermissions();
 
-  useEffect(() => {
-    const askPermission = async () => {
-      try {
-        const res = await ImagePicker.getCameraPermissionsAsync();
-        if (!res.granted) {
-          // alert("camera permission required");
-        }
-      } catch (err) {
-        console.log("ask permission failed ");
+  const askPermission = async () => {
+    try {
+      if (status?.status === ImagePicker.PermissionStatus.UNDETERMINED) {
+        const permissionRes = await requestPermission();
+        return permissionRes.granted;
       }
-    };
-    askPermission();
-  }, []);
+      if (status?.status === ImagePicker.PermissionStatus.DENIED) {
+        alert("camera permission required");
+        return false;
+      }
+      return true;
+    } catch (err) {
+      console.log("ask permission failed ");
+    }
+  };
 
   const handleChoosePhoto = async () => {
     try {
@@ -46,14 +49,17 @@ const CreatePostPage: FC<{ navigation: any }> = ({ navigation }) => {
   };
 
   const handleTakePhoto = async () => {
+    const isPermission = await askPermission();
+    if (!isPermission) return;
     try {
       const res = await ImagePicker.launchCameraAsync();
+      console.log(res);
       if (!res.canceled && res.assets.length > 0) {
         const uri = res.assets[0].uri;
         setAvatrUri(uri);
       }
     } catch (err) {
-      console.log("open camera error")
+      console.log("open camera error");
     }
   };
 
@@ -82,7 +88,7 @@ const CreatePostPage: FC<{ navigation: any }> = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={{ }}>
+    <ScrollView style={{}}>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleChoosePhoto}>
           <Ionicons name={"image"} style={styles.galleryButton} size={50} />
@@ -166,7 +172,6 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   descriptionInput: {
-    
     borderWidth: 2,
     borderColor: "#EBEBEB",
     borderRadius: 10,

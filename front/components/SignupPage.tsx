@@ -9,7 +9,7 @@ import {
   TextInput,
   ScrollView,
   Alert,
-} from "react-native"
+} from "react-native";
 import AuthModel, { User } from "../model/AuthModel";
 import UserModel from "../model/UserModel";
 import * as ImagePicker from "expo-image-picker";
@@ -21,6 +21,23 @@ const SignupPage: FC<{ navigation: any }> = ({ navigation }) => {
   const [confirmPassword, onText3Change] = useState<string>("");
   const [passwordsMatch, setPasswordsMatch] = useState<boolean>(true);
   const [name, onText4Change] = useState<string>("");
+  const [status, requestPermission] = ImagePicker.useCameraPermissions();
+
+  const askPermission = async () => {
+    try {
+      if (status?.status === ImagePicker.PermissionStatus.UNDETERMINED) {
+        const permissionRes = await requestPermission();
+        return permissionRes.granted;
+      }
+      if (status?.status === ImagePicker.PermissionStatus.DENIED) {
+        alert("camera permission required");
+        return false;
+      }
+      return true;
+    } catch (err) {
+      console.log("ask permission failed ");
+    }
+  };
 
   const handleChoosePhoto = async () => {
     try {
@@ -35,14 +52,17 @@ const SignupPage: FC<{ navigation: any }> = ({ navigation }) => {
   };
 
   const handleTakePhoto = async () => {
+    const isPermission = await askPermission();
+    if (!isPermission) return;
     try {
       const res = await ImagePicker.launchCameraAsync();
+      console.log(res);
       if (!res.canceled && res.assets.length > 0) {
         const uri = res.assets[0].uri;
         setAvatrUri(uri);
       }
     } catch (err) {
-      console.log("open camera error" + err);
+      console.log("open camera error");
     }
   };
 
@@ -140,7 +160,6 @@ const SignupPage: FC<{ navigation: any }> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    
   },
   userPictureStyle: {
     marginTop: 10,
@@ -187,7 +206,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 15,
     borderColor: "#d3d3d3",
-    backgroundColor:"#f8f9fa"
+    backgroundColor: "#f8f9fa",
   },
   inputError: {
     borderColor: "red",
@@ -207,7 +226,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     padding: 10,
-    color:"white"
+    color: "white",
   },
 });
 
