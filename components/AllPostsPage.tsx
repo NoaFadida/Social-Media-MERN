@@ -9,7 +9,7 @@ import {
   FlatList,
   TouchableHighlight,
 } from "react-native";
-import UserModel, { Post } from "../model/UserModel";
+import UserModel, { Post } from "../model/UserModel"
 
 const ListItem: FC<{
   message: String;

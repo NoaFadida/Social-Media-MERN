@@ -8,10 +8,8 @@ import {
   Image,
   FlatList,
   TouchableHighlight,
-  Button,
 } from "react-native";
 import UserModel, { User } from "../model/UserModel";
-import Conversation from "./Conversation/Conversation";
 
 const ListItem: FC<{
   user: User;

@@ -19,8 +19,8 @@ import yargsParser from "yargs-parser";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AllPostsPage from "./AllPostsPage";
 import CreatePostPage from "./CreatePostPage";
-import MyPostsPage from "./MyPostsPage";
 import ChatPage from "./ChatPage";
+import MyPostsPage from "./MyPostsPage";
 
 const UserDetailsPage: FC<{ route: any; navigation: any }> = ({
   navigation,

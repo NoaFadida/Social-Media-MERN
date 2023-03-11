@@ -13,7 +13,7 @@ import {
 import * as ImagePicker from "expo-image-picker";
 import UserModel, { Post } from "../model/UserModel";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import Ionicons from "@expo/vector-icons/Ionicons"
 
 const CreatePostPage: FC<{ navigation: any }> = ({ navigation }) => {
   const [description, setDescription] = useState("");

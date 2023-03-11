@@ -11,13 +11,12 @@ import {
   ScrollView,
 } from "react-native"
 import AuthModel, { User } from "../model/AuthModel";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import AsyncStorage from "@react-native-async-storage/async-storage"
 import { AntDesign } from "@expo/vector-icons";
 
 const LoginPage: FC<{ navigation: any }> = ({ navigation }) => {
-  const [username, onText1Change] = useState<string>("");
   const [password, onText2Change] = useState<string>("");
+  const [username, onText1Change] = useState<string>("");
   //Stay Log In
   useEffect(() => {
     AsyncStorage.getItem("refreshToken").then(async (token) => {

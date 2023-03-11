@@ -1,6 +1,4 @@
 import FormData from "form-data";
-import AuthApi from "../api/AuthApi";
-import apiClient from "../api/ClientApi";
 import UserApi from "../api/UserApi";
 
 export type User = {

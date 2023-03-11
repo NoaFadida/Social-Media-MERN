@@ -14,8 +14,8 @@ import UserModel, { Post } from "../model/UserModel";
 
 export const ListItem: FC<{
   post: Post;
-  onRowSelected?: (sender: String) => void;
   navigation: any;
+  onRowSelected?: (sender: String) => void;
   onClickEvent?: boolean;
 }> = ({ post, onRowSelected, navigation, onClickEvent }) => {
   const { avatarUrl, message, sender, id } = post || {};

@@ -10,7 +10,7 @@ import {
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 
 import UserModel, { Post } from "../model/UserModel";
-import { ListItem } from "./MyPostsPage";
+import { ListItem } from "./MyPostsPage"
 
 const EditPost: FC<{ route: any; navigation: any }> = ({
   route,

@@ -1,18 +1,11 @@
-import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import { FC, useState, useEffect, useRef } from "react";
 
 import {
-  StatusBar,
   StyleSheet,
-  Text,
   View,
-  Image,
-  FlatList,
-  TouchableHighlight,
   TextInput,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import ChatApi from "../../api/ChatApi";
@@ -40,17 +33,6 @@ const Conversation: FC<{ route?: any; navigation: any }> = ({
   };
   const messageInput: any = useRef();
 
-  //   useEffect(() => {
-  //     const unsubscribe = navigation.addListener("focus", async () => {
-  //       const sender = await AsyncStorage.getItem("id");
-  //       console.log("sender", sender);
-  //       if (sender) {
-  //         setSenderId(sender);
-  //       }
-  //     });
-  //     return unsubscribe;
-  //   }, []);
-
   useEffect(() => {
     const getConversationFunc = async () => {
       try {
@@ -73,20 +55,6 @@ const Conversation: FC<{ route?: any; navigation: any }> = ({
     };
     getConversationFunc();
   }, [description]);
-
-  //   useEffect(() => {
-  //     const fetchConversationMsg = async () => {
-  //       try {
-  //         const fetchMsg: any = await ChatApi.getConversationrMessages(
-  //           conversationId
-  //         );
-  //         setMessages(fetchMsg.data);
-  //       } catch (err) {
-  //         console.log("fail adding message ");
-  //       }
-  //     };
-  //     fetchConversationMsg();
-  //   }, []);
 
   const addNewMsg = async () => {
     const message: any = {
@@ -120,7 +88,6 @@ const Conversation: FC<{ route?: any; navigation: any }> = ({
           <TouchableOpacity onPress={addNewMsg}>
             <AntDesign name="rightcircle" size={32} color="#74c69d" />
           </TouchableOpacity>
-          {/* <Button title="Send" onPress={addNewMsg} /> */}
         </View>
       </View>
     </View>

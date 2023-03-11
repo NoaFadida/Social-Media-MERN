@@ -1,4 +1,4 @@
-import apiClient from "./ClientApi"
+import apiClient from "./ClientApi";
 
 const getConversation = async (senderId: string, receiverId: string) => {
   return apiClient.get(

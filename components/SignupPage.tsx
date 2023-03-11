@@ -19,8 +19,8 @@ const SignupPage: FC<{ navigation: any }> = ({ navigation }) => {
   const [username, onText1Change] = useState<string>("");
   const [password, onText2Change] = useState<string>("");
   const [confirmPassword, onText3Change] = useState<string>("");
-  const [name, onText4Change] = useState<string>("");
   const [passwordsMatch, setPasswordsMatch] = useState<boolean>(true);
+  const [name, onText4Change] = useState<string>("");
 
   const handleChoosePhoto = async () => {
     try {

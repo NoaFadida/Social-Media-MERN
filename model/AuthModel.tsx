@@ -4,8 +4,8 @@ import apiClient from "../api/ClientApi"
 export type User = {
   email: String;
   password: String;
-  name?: String;
   avatarUrl?: String;
+  name?: String;
 };
 
 export type Token = {
