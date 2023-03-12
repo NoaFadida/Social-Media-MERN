@@ -10,7 +10,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /user
+ * /user:
  *   get:
  *     summary: get all users
  *     tags: [User]
@@ -27,18 +27,10 @@ router.get("/", user.getAllUsers);
 
 /**
  * @swagger
- * /user/{id}
+ * /user/{id}:
  *   get:
  *     summary: get requsted user
  *     tags: [User]
- *  *     parameters:
- *       - in: path
- *         id: id
- *         requiered: true
- *         schema:
- *           type: string
- *           description: the requested user
-
  *     responses:
  *       200:
  *         description: the requested user
@@ -53,7 +45,7 @@ router.get("/:id", user.getUserById);
 
 /**
  * @swagger
- * /user
+ * /user:
  *   put:
  *     summary: update user details
  *     tags: [User]

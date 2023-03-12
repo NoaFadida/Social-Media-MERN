@@ -6,16 +6,16 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const postSchema = new mongoose_1.default.Schema({
     message: {
         type: String,
-        required: true
+        required: false,
     },
     sender: {
         type: String,
-        required: true
+        required: true,
     },
     avatarUrl: {
         type: String,
-        required: true
-    }
+        required: true,
+    },
 });
-module.exports = mongoose_1.default.model('Post', postSchema);
+module.exports = mongoose_1.default.model("Post", postSchema);
 //# sourceMappingURL=post_model.js.map

@@ -102,7 +102,50 @@ router.get("/userId/:id", post_1.default.getPostsById);
  *
  */
 router.post("/", post_1.default.addNewPost);
+/**
+ * @swagger
+ * /post:
+ *   put:
+ *     summary: edit existing post
+ *     tags: [Post]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Post'
+ *     responses:
+ *       200:
+ *         description: the requested post
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Post'
+ *
+ */
 router.put("/", post_1.default.updatePost);
+/**
+ * @swagger
+ * /post/{id}:
+ *   delete:
+ *     summary: delete post by id
+ *     tags: [Post]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         requiered: true
+ *         schema:
+ *           type: string
+ *           description: the requested post id
+ *     responses:
+ *       200:
+ *         description: the requested post
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Post'
+ *
+ */
 router.delete("/:id", post_1.default.deletePost);
 module.exports = router;
 //# sourceMappingURL=post_route.js.map

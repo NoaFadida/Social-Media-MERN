@@ -59,6 +59,7 @@ const addNewPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         avatarUrl: result,
     });
     try {
+        console.log('post', post);
         const newPost = yield post.save();
         console.log("post saved in DB");
         res.status(200).send(newPost);

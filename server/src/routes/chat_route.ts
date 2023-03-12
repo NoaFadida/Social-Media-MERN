@@ -38,7 +38,7 @@ router.get("/conversation/:senderId/:receiverId", conversation.getConversation);
 
 /**
  * @swagger
- * /chat/message/{conversationId}
+ * /chat/message/{conversationId}:
  *   get:
  *     summary: get messages by conversation id
  *     tags: [Message]
@@ -62,7 +62,7 @@ router.get("/message/:conversationId", message.getConversationrMessages);
 
 /**
  * @swagger
- * /chat/message
+ * /chat/message:
  *   post:
  *     summary: send new message
  *     tags: [Message]

@@ -36,8 +36,6 @@ app.use("/file", file_route_1.default);
 app.use("/chat", chat_route_1.default);
 app.use("/public", express_1.default.static("public"));
 app.use("/uploads", express_1.default.static("uploads"));
-// import conversationRouth from "./routes/conversation_route";
-// app.use("/conversation", conversationRouth);
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
 if (process.env.NODE_ENV == "development") {
