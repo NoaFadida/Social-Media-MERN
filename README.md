@@ -26,3 +26,7 @@ Clone the repository Open terminal(pay attention to current folder) & run: npm i
 
 #### My Profile & Edit 
 ![profile](https://user-images.githubusercontent.com/82596988/225550692-8df79831-9a4e-4d3e-9b05-a1a19f7e01df.jpeg)
+
+#### Login & Register
+![login](https://user-images.githubusercontent.com/82596988/225556401-dca34725-861c-4924-bc19-a7ae8358ffcd.jpeg)
+![register](https://user-images.githubusercontent.com/82596988/225556823-bc0ea3a1-dca7-4e9f-b383-c4a617d64b87.jpeg)
