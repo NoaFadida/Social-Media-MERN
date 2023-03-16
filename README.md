@@ -1,4 +1,4 @@
-## Social-Media-MERN
+### Social-Media-MERN
 
 #### Create your account or log in to App - A simple, fun & creative way to share & edit photos & messages with other accounts.
 This app is social media platform that emphasizes photo sharing via its mobile app. You can take, edit, and publish visual content for other users.
